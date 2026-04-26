@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment 5 - Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f0f5; }
+        header {
+            background-color: #c2185b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container { width: 40%; margin: 40px auto; }
+        .calculator {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h2 { color: #c2185b; }
+        #display {
+            width: 100%;
+            padding: 15px;
+            font-size: 28px;
+            text-align: right;
+            border: 2px solid #c2185b;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 18px;
+            font-size: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f8f0f5;
+            color: #333;
+        }
+        button:hover { background: #f8bbd0; }
+        .operator { background: #c2185b; color: white; }
+        .operator:hover { background: #880e4f; }
+        .equals { background: #880e4f; color: white; grid-column: span 2; }
+        .equals:hover { background: #c2185b; }
+        .clear { background: #e53935; color: white; grid-column: span 2; }
+        .clear:hover { background: #b71c1c; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>👗 StyleHub - Calculator</h1>
+    </header>
+
+    <div class="container">
+        <div class="calculator">
+            <h2>🧮 Simple Calculator</h2>
+            <input type="text" id="display" readonly placeholder="0">
+
+            <div class="buttons">
+                <button onclick="press('7')">7</button>
+                <button onclick="press('8')">8</button>
+                <button onclick="press('9')">9</button>
+                <button class="operator" onclick="press('/'">÷</button>
+
+                <button onclick="press('4')">4</button>
+                <button onclick="press('5')">5</button>
+                <button onclick="press('6')">6</button>
+                <button class="operator" onclick="press('*')">×</button>
+
+                <button onclick="press('1')">1</button>
+                <button onclick="press('2')">2</button>
+                <button onclick="press('3')">3</button>
+                <button class="operator" onclick="press('-')">−</button>
+
+                <button onclick="press('0')">0</button>
+                <button onclick="press('.')">.</button>
+                <button class="operator" onclick="press('+')">+</button>
+                <button class="operator" onclick="deleteLast()">⌫</button>
+
+                <button class="clear" onclick="clearDisplay()">Clear</button>
+                <button class="equals" onclick="calculate()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function press(val) {
+            document.getElementById("display").value += val;
+        }
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+        function deleteLast() {
+            let val = document.getElementById("display").value;
+            document.getElementById("display").value = val.slice(0, -1);
+        }
+        function calculate() {
+            try {
+                let result = eval(document.getElementById("display").value);
+                document.getElementById("display").value = result;
+            } catch {
+                document.getElementById("display").value = "Error";
+            }
+        }
+    </script>
+
+</body>
+</html>

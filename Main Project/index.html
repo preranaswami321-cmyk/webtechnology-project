@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StyleHub - Fashion Store</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f8f0f5; }
+
+        /* NAVBAR */
+        nav {
+            background: #880e4f;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav .logo { color: white; font-size: 24px; font-weight: bold; }
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        nav ul li a:hover { color: #f8bbd0; }
+        .cart-btn {
+            background: white;
+            color: #c2185b;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* HERO BANNER */
+        .hero {
+            background: linear-gradient(135deg, #c2185b, #880e4f);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 48px; margin-bottom: 15px; }
+        .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; }
+        .hero button {
+            background: white;
+            color: #c2185b;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        .hero button:hover { background: #f8bbd0; }
+
+        /* CATEGORIES */
+        .categories {
+            background: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .categories h2 { color: #c2185b; font-size: 32px; margin-bottom: 25px; }
+        .cat-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cat-card {
+            background: #f8f0f5;
+            border-radius: 15px;
+            padding: 25px 35px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        .cat-card:hover {
+            background: #c2185b;
+            color: white;
+            border-color: #c2185b;
+            transform: translateY(-5px);
+        }
+        .cat-card .icon { font-size: 40px; }
+        .cat-card p { font-size: 16px; margin-top: 8px; font-weight: bold; }
+
+        /* PRODUCTS */
+        .products {
+            padding: 50px 40px;
+            background: #f8f0f5;
+        }
+        .products h2 { color: #c2185b; font-size: 32px; margin-bottom: 25px; text-align: center; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card .product-img {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .product-card h3 { color: #333; margin-bottom: 8px; }
+        .product-card .price {
+            color: #c2185b;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .product-card .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+        .product-card button {
+            background: #c2185b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+        .product-card button:hover { background: #880e4f; }
+
+        /* CART */
+        .cart-section {
+            background: white;
+            padding: 40px;
+            display: none;
+        }
+        .cart-section h2 { color: #c2185b; margin-bottom: 20px; }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            color: #c2185b;
+            margin-top: 20px;
+        }
+        .checkout-btn {
+            background: #c2185b;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            float: right;
+        }
+
+        /* OFFER BANNER */
+        .offer {
+            background: linear-gradient(135deg, #880e4f, #c2185b);
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+        .offer h2 { font-size: 36px; margin-bottom: 15px; }
+        .offer p { font-size: 18px; margin-bottom: 20px; }
+        .offer input {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            width: 300px;
+        }
+        .offer button {
+            background: white;
+            color: #c2185b;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #880e4f;
+            color: white;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        footer h3 { margin-bottom: 15px; font-size: 20px; }
+        footer p, footer a {
+            color: #f8bbd0;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .footer-bottom {
+            background: #560027;
+            color: #f8bbd0;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+
+        /* NOTIFICATION */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #c2185b;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            display: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">👗 StyleHub</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>✨ Welcome to StyleHub</h1>
+        <p>Your one-stop destination for trendy fashion!</p>
+        <button onclick="scrollToProducts()">Shop Now 🛍️</button>
+        <button onclick="alert('Sale: Up to 50% off!')">View Offers 🎉</button>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="categories">
+        <h2>Shop by Category</h2>
+        <div class="cat-grid">
+            <div class="cat-card"><div class="icon">👕</div><p>Tops</p></div>
+            <div class="cat-card"><div class="icon">👖</div><p>Jeans</p></div>
+            <div class="cat-card"><div class="icon">👗</div><p>Dresses</p></div>
+            <div class="cat-card"><div class="icon">👠</div><p>Footwear</p></div>
+            <div class="cat-card"><div class="icon">👜</div><p>Accessories</p></div>
+        </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="products" id="productsSection">
+        <h2>🌟 Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img">👕</div>
+                <h3>Floral Top</h3>
+                <p class="old-price">₹799</p>
+                <p class="price">₹599</p>
+                <button onclick="addToCart('Floral Top', 599)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">👖</div>
+                <h3>Blue Jeans</h3>
+                <p class="old-price">₹1299</p>
+                <p class="price">₹999</p>
+                <button onclick="addToCart('Blue Jeans', 999)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">👗</div>
+                <h3>Summer Dress</h3>
+                <p class="old-price">₹1599</p>
+                <p class="price">₹1299</p>
+                <button onclick="addToCart('Summer Dress', 1299)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">👠</div>
+                <h3>Sneakers</h3>
+                <p class="old-price">₹1999</p>
+                <p class="price">₹1599</p>
+                <button onclick="addToCart('Sneakers', 1599)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">👜</div>
+                <h3>Handbag</h3>
+                <p class="old-price">₹999</p>
+                <p class="price">₹799</p>
+                <button onclick="addToCart('Handbag', 799)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🧣</div>
+                <h3>Silk Scarf</h3>
+                <p class="old-price">₹499</p>
+                <p class="price">₹349</p>
+                <button onclick="addToCart('Silk Scarf', 349)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🕶️</div>
+                <h3>Sunglasses</h3>
+                <p class="old-price">₹699</p>
+                <p class="price">₹499</p>
+                <button onclick="addToCart('Sunglasses', 499)">Add to Cart 🛒</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">💍</div>
+                <h3>Jewellery Set</h3>
+                <p class="old-price">₹899</p>
+                <p class="price">₹649</p>
+                <button onclick="addToCart('Jewellery Set', 649)">Add to Cart 🛒</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART -->
+    <div class="cart-section" id="cartSection">
+        <h2>🛒 Your Cart</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total">Total: ₹<span id="cartTotal">0</span></div>
+        <button class="checkout-btn" onclick="checkout()">Checkout ✅</button>
+    </div>
+
+    <!-- OFFER -->
+    <div class="offer">
+        <h2>🎉 Get Exclusive Offers!</h2>
+        <p>Subscribe to our newsletter for special discounts</p>
+        <input type="email" id="emailInput" placeholder="Enter your email">
+        <button onclick="subscribe()">Subscribe</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <h3>👗 StyleHub</h3>
+            <p>Your one-stop fashion destination!</p>
+            <p>📧 stylehub@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+        </div>
+        <div>
+            <h3>Quick Links</h3>
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+        <div>
+            <h3>Categories</h3>
+            <a href="#">Tops & T-Shirts</a>
+            <a href="#">Jeans & Trousers</a>
+            <a href="#">Dresses</a>
+            <a href="#">Footwear</a>
+            <a href="#">Accessories</a>
+        </div>
+        <div>
+            <h3>Address</h3>
+            <p>📍 MG Road, Bangalore</p>
+            <p>Karnataka, India - 560001</p>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        <p>© 2026 StyleHub Fashion Store | Made with ❤️ | Web Technology Project</p>
+    </div>
+
+    <!-- NOTIFICATION -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(name, price) {
+            cart.push({name, price});
+            total += price;
+            document.getElementById("cartCount").innerHTML = cart.length;
+            showNotification(name + " added to cart! 🛒");
+            updateCart();
+        }
+
+        function updateCart() {
+            let html = "";
+            cart.forEach((item, i) => {
+                html += `<div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>₹${item.price}</span>
+                    <button onclick="removeItem(${i})" style="background:#e53935;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">Remove</button>
+                </div>`;
+            });
+            document.getElementById("cartItems").innerHTML = html;
+            document.getElementById("cartTotal").innerHTML = total;
+        }
+
+        function removeItem(index) {
+            total -= cart[index].price;
+            cart.splice(index, 1);
+            document.getElementById("cartCount").innerHTML = cart.length;
+            updateCart();
+        }
+
+        function toggleCart() {
+            let cartSection = document.getElementById("cartSection");
+            if (cartSection.style.display === "none" || cartSection.style.display === "") {
+                cartSection.style.display = "block";
+            } else {
+                cartSection.style.display = "none";
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Cart is empty!");
+            } else {
+                alert("Order placed successfully! Total: ₹" + total + " 🎉");
+                cart = [];
+                total = 0;
+                document.getElementById("cartCount").innerHTML = 0;
+                updateCart();
+                document.getElementById("cartSection").style.display = "none";
+            }
+        }
+
+        function subscribe() {
+            let email = document.getElementById("emailInput").value;
+            if (email === "" || !email.includes("@")) {
+                alert("Please enter valid email!");
+            } else {
+                alert("Subscribed successfully! 🎉 Welcome to StyleHub!");
+                document.getElementById("emailInput").value = "";
+            }
+        }
+
+        function scrollToProducts() {
+            document.getElementById("productsSection").scrollIntoView({behavior: "smooth"});
+        }
+
+        function showNotification(msg) {
+            let notif = document.getElementById("notification");
+            notif.innerHTML = msg;
+            notif.style.display = "block";
+            setTimeout(() => { notif.style.display = "none"; }, 2000);
+        }
+    </script>
+
+</body>
+</html>

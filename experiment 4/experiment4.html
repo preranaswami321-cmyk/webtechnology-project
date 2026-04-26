@@ -1,0 +1,154 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment 4 - JavaScript Basics</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f0f5; }
+        header {
+            background-color: #c2185b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container { width: 80%; margin: 30px auto; }
+        .box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 { color: #c2185b; }
+        button {
+            background: #c2185b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover { background: #880e4f; }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+        }
+        #result {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #c2185b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>👗 StyleHub - JavaScript Basics</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- Alert Box -->
+        <div class="box">
+            <h2>1. Welcome Alert</h2>
+            <button onclick="showWelcome()">Click to Welcome!</button>
+        </div>
+
+        <!-- Name Input -->
+        <div class="box">
+            <h2>2. Customer Name</h2>
+            <input type="text" id="nameInput" placeholder="Enter your name">
+            <button onclick="greetCustomer()">Greet Me!</button>
+            <p id="greetMsg"></p>
+        </div>
+
+        <!-- Product Counter -->
+        <div class="box">
+            <h2>3. Cart Counter</h2>
+            <p>Items in cart: <span id="cartCount">0</span></p>
+            <button onclick="addToCart()">Add Item 🛒</button>
+            <button onclick="removeFromCart()">Remove Item</button>
+            <button onclick="clearCart()">Clear Cart</button>
+        </div>
+
+        <!-- Color Changer -->
+        <div class="box">
+            <h2>4. Theme Changer</h2>
+            <button onclick="changeColor('pink')">Pink Theme 🌸</button>
+            <button onclick="changeColor('purple')">Purple Theme 💜</button>
+            <button onclick="changeColor('default')">Default Theme</button>
+        </div>
+
+        <!-- Offer Check -->
+        <div class="box">
+            <h2>5. Check Offer</h2>
+            <input type="number" id="priceInput" placeholder="Enter price">
+            <button onclick="checkOffer()">Check Discount</button>
+            <p id="result"></p>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Welcome Alert
+        function showWelcome() {
+            alert("Welcome to StyleHub Fashion Store! 👗");
+        }
+
+        // 2. Greet Customer
+        function greetCustomer() {
+            let name = document.getElementById("nameInput").value;
+            if (name == "") {
+                document.getElementById("greetMsg").innerHTML = "Please enter your name!";
+            } else {
+                document.getElementById("greetMsg").innerHTML = "Hello " + name + "! Happy Shopping! 🛍️";
+            }
+        }
+
+        // 3. Cart Counter
+        let count = 0;
+        function addToCart() {
+            count++;
+            document.getElementById("cartCount").innerHTML = count;
+        }
+        function removeFromCart() {
+            if (count > 0) count--;
+            document.getElementById("cartCount").innerHTML = count;
+        }
+        function clearCart() {
+            count = 0;
+            document.getElementById("cartCount").innerHTML = count;
+        }
+
+        // 4. Color Changer
+        function changeColor(color) {
+            if (color == 'pink') {
+                document.body.style.backgroundColor = "#fce4ec";
+            } else if (color == 'purple') {
+                document.body.style.backgroundColor = "#e8eaf6";
+            } else {
+                document.body.style.backgroundColor = "#f8f0f5";
+            }
+        }
+
+        // 5. Check Offer
+        function checkOffer() {
+            let price = document.getElementById("priceInput").value;
+            if (price >= 1000) {
+                document.getElementById("result").innerHTML = "🎉 You get 20% discount! Pay ₹" + (price * 0.8);
+            } else if (price >= 500) {
+                document.getElementById("result").innerHTML = "😊 You get 10% discount! Pay ₹" + (price * 0.9);
+            } else {
+                document.getElementById("result").innerHTML = "❌ No discount on orders below ₹500";
+            }
+        }
+    </script>
+
+</body>
+</html>
