@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment 9 - Database</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f0f5; }
+        header { background: #c2185b; color: white; text-align: center; padding: 20px; }
+        .container { width: 80%; margin: 30px auto; }
+        .form-box, .table-box { background: white; border-radius: 15px; padding: 25px; margin: 20px 0; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #c2185b; }
+        .form-group { margin: 15px 0; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; }
+        input { width: 100%; padding: 10px; font-size: 16px; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        input:focus { border-color: #c2185b; outline: none; }
+        button { background: #c2185b; color: white; border: none; padding: 12px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #880e4f; }
+        .success { background: #e8f5e9; color: green; padding: 10px; border-radius: 8px; margin: 10px 0; display: none; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #c2185b; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #fce4ec; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>👗 StyleHub - Customer Database</h1>
+    <p>Experiment 9 - Database Integration</p>
+</header>
+<div class="container">
+    <div class="form-box">
+        <h2>📝 Add New Customer</h2>
+        <div class="success" id="successMsg">✅ Customer added successfully!</div>
+        <div class="form-group">
+            <label>Full Name:</label>
+            <input type="text" id="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label>Phone:</label>
+            <input type="text" id="phone" placeholder="Enter phone number">
+        </div>
+        <button onclick="addCustomer()">Add Customer 👗</button>
+    </div>
+
+    <div class="table-box">
+        <h2>👥 All Customers</h2>
+        <table id="customerTable">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Priya Sharma</td>
+                <td>priya@gmail.com</td>
+                <td>9876543210</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Rahul Mehta</td>
+                <td>rahul@gmail.com</td>
+                <td>8765432109</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Sneha Kapoor</td>
+                <td>sneha@gmail.com</td>
+                <td>7654321098</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    let idCount = 4;
+    function addCustomer() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let phone = document.getElementById("phone").value;
+
+        if (name == "" || email == "" || phone == "") {
+            alert("Please fill all fields!");
+            return;
+        }
+
+        let table = document.getElementById("customerTable");
+        let row = table.insertRow(-1);
+        row.innerHTML = `<td>${idCount}</td><td>${name}</td><td>${email}</td><td>${phone}</td>`;
+        idCount++;
+
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("phone").value = "";
+
+        document.getElementById("successMsg").style.display = "block";
+        setTimeout(() => { document.getElementById("successMsg").style.display = "none"; }, 3000);
+    }
+</script>
+</body>
+</html>
